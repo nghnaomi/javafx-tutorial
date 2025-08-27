@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     private Image aluneImage = new Image(this.getClass().getResourceAsStream("/images/alune.png"));
 
     @FXML
-    public void initialise() {
+    public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 

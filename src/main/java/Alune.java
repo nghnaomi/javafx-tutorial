@@ -4,6 +4,6 @@ public class Alune {
     }
 
     public String getResponse(String input) {
-        return "Alune heard: " + input;
+        return "alune heard: " + input;
     }
 }

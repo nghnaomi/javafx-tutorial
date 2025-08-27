@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Collections;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,29 +20,33 @@ public class DialogBox extends HBox {
 
     public DialogBox(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
     private void flip() {
-        this.setAlignment(Pos.TOP_LEFT);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        FXCollections.reverse(tmp);
+        Collections.reverse(tmp);
         this.getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String s, Image i) {
-        return new DialogBox(s, i);
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
     }
 
-    public static DialogBox getAluneDialog(String s, Image i) {
-        var db = new DialogBox(s, i);
+    public static DialogBox getAluneDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
         db.flip();
+        db.dialog.getStyleClass().add("reply-label");
         return db;
     }
 }
